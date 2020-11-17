@@ -49,7 +49,7 @@ const HomeTabs = () => {
             >
                 <Tab icon={<HomeIcon />} aria-label="phone" component={Link} to={'/home'}/>
                 <Tab icon={<CropFreeIcon />} aria-label="favorite" component={Link} to={'/scan'}/>
-                <Tab icon={<ListAltIcon />} aria-label="person" />
+                <Tab icon={<ListAltIcon />} aria-label="person" component={Link} to={'/list'}/>
             </Tabs>
         </Paper>
     )
