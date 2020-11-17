@@ -9,6 +9,8 @@ import {ThemeProvider} from "@material-ui/styles";
 import CameraHandler from "./components/cameraHandler";
 import Recycling from "./components/Recycling/Recycling";
 import ScanIA from "./components/ScanIA/ScanIA";
+import HomeAppBar from "./components/Home/HomeAppBar";
+import PageScanIA from "./components/ScanIA/PageScanIA";
 
 
 const theme = createMuiTheme({
@@ -26,6 +28,7 @@ function App() {
   return (
   <ThemeProvider theme={theme}>
     <div className="App">
+        {/*<HomeAppBar/>*/}
         <Router>
             <Switch>
                 <Route exact path='/'>
@@ -39,6 +42,7 @@ function App() {
                 </Route>
                 <Route path='/recycling' render={(props) => (<Recycling {...props}/>)}/>
                 <Route path='/list' component={ScanIA}/>
+                <Route path='/scanIA' render={(props) => (<PageScanIA{...props}/>)}/>
             </Switch>
         </Router>
     </div>

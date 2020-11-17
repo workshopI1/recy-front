@@ -4,6 +4,9 @@ import Box from '@material-ui/core/Box';
 import { IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PhotoCameraRoundedIcon from "@material-ui/icons/PhotoCameraRounded";
+import HomeAppBar from "../Home/HomeAppBar";
+import {useHistory} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,24 +27,44 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 const ScanIA = () => {
-    const classes = useStyles();const [source, setSource] = useState("");const handleCapture = (target) => {
+    const classes = useStyles();
+    const [source, setSource] = useState("");
+    const history = useHistory();
+    const handleCapture = (target) => {
         if (target.files) {
             if (target.files.length !== 0) {
                 const file = target.files[0];
-                const newUrl = URL.createObjectURL(file);
-                setSource(newUrl);
+                let imgBase64 = ''
+                getBase64(file,(result) => {
+                    imgBase64 = result;
+                    const newUrl = URL.createObjectURL(file);
+                    setSource(newUrl);
+                    history.push({
+                        pathname:'/scanIA',
+                        state:{source : newUrl}
+                    })
+                })
             }
         }
     };
+
+    const getBase64 = (file, cb)  => {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+            reader.onload = function () {
+            cb(reader.result)
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
+
     return (
         <div className={classes.root}>
+            {/*<HomeAppBar/>*/}
             <Grid container>
                 <Grid item xs={12}>
-                    <h5>Capture your image</h5>
-                    {source &&
-                    <Box display="flex" justifyContent="center" border={1} className={classes.imgBox}>
-                        <img src={source} alt={"snap"} className={classes.img}></img>
-                    </Box>}
+                    <h5>Pas de code barre ? Scanner directement votre produit</h5>
                     <input
                         accept="image/*"
                         className={classes.input}

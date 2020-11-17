@@ -9,6 +9,7 @@ import VideoSkeleton from './Video.skeleton';
 
 import './video.css';
 import HomeAppBar from "../Home/HomeAppBar";
+import ScanIA from "../ScanIA/ScanIA";
 
 const Video = ({ history }) => {
   const [ videoInit, setVideoInit ] = useState(false);
@@ -108,6 +109,7 @@ const Video = ({ history }) => {
           </div>
         }
       </div>
+      <ScanIA/>
     </div>
     );
 }
