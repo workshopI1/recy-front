@@ -24,7 +24,7 @@ const HomeAppBar = () => {
     return(
         <AppBar position="static" className={classes.navBar}>
             <Toolbar>
-                <img src={logo} alt={'a'}/>
+                <img className={classes.img} src={logo} alt={'a'}/>
             </Toolbar>
         </AppBar>
     )

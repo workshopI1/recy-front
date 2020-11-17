@@ -3,6 +3,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import HomeAppBar from "./HomeAppBar";
 import HomeTabs from "./HomeTabs";
 import ContentList from "./Content/ContentList";
+import CameraHandler from '../cameraHandler/CameraHandler'
 
 const useStyles = makeStyles((theme) => ({
     tabs : {
@@ -34,6 +35,7 @@ const Home = () => {
         <div>
             <HomeAppBar/>
             <ContentList/>
+            <CameraHandler/>
             <div className={classes.tabs}>
 
             <HomeTabs />
