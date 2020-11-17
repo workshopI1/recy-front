@@ -4,13 +4,14 @@ import HomeAppBar from "./HomeAppBar";
 import HomeTabs from "./HomeTabs";
 import ContentList from "./Content/ContentList";
 import CameraHandler from '../cameraHandler/CameraHandler'
+import {useHistory} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
     tabs : {
         position:'absolute',
         bottom:'0',
         width:'100%',
-        // height:'100%'
     }
     // container : {
     //     display: 'inline-block',
@@ -31,11 +32,12 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
 
     const classes = useStyles();
+    const history = useHistory();
     return(
         <div>
             <HomeAppBar/>
             <ContentList/>
-            <CameraHandler/>
+            {/*<CameraHandler/>*/}
             <div className={classes.tabs}>
 
             <HomeTabs />

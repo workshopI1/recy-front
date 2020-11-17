@@ -6,6 +6,8 @@ import React from "react";
 import {primary, secondary} from "./shared/colors";
 import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
+import CameraHandler from "./components/cameraHandler";
+import Recycling from "./components/Recycling/Recycling";
 
 
 const theme = createMuiTheme({
@@ -31,6 +33,10 @@ function App() {
                 <Route path='/home'>
                     <Home/>
                 </Route>
+                <Route path='/scan'>
+                    <CameraHandler/>
+                </Route>
+                <Route path='/recycling' render={(props) => (<Recycling {...props}/>)}/>
             </Switch>
         </Router>
     </div>

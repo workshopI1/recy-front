@@ -8,6 +8,7 @@ import { withRouter } from 'react-router';
 import VideoSkeleton from './Video.skeleton';
 
 import './video.css';
+import HomeAppBar from "../Home/HomeAppBar";
 
 const Video = ({ history }) => {
   const [ videoInit, setVideoInit ] = useState(false);
@@ -17,11 +18,16 @@ const Video = ({ history }) => {
 
   const onProductFound = (code) => {
     Quagga.stop();
-    if (code === 'not-found') {
-      history.push(`/product/${code}?code=${barcode}`);
-    } else {
-      history.push(`/product/${code}`);
-    }
+      history.push({
+        pathname: '/recycling',
+        state: {code: code}
+      })
+    // if (code === 'not-found') {
+      // })
+      // history.push(`/product/${code}?code=${barcode}`);
+    // } else {
+      // history.push(`/product/${code}`);
+    // }
   }
 
   const onInitSuccess = () => {
@@ -31,6 +37,7 @@ const Video = ({ history }) => {
 
   const onDetected = (result) => {
     Quagga.offDetected(onDetected);
+    console.log(result)
     fetch(`https://world.openfoodfacts.org/api/v0/product/${result.codeResult.code}.json`)
       .then(res => res.json())
       // eslint-disable-next-line no-use-before-define
@@ -73,16 +80,17 @@ const Video = ({ history }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (attempts > 3) {
-      onProductFound('not-found');
-    }
-  }, [attempts]);
+  // useEffect(() => {
+  //   if (attempts > 3) {
+  //     onProductFound('not-found');
+  //   }
+  // }, [attempts]);
 
   return (
     <div>
+      <HomeAppBar/>
       <div className="video__explanation">
-        <p>Scan a product&apos;s barcode and get its nutritional values <span role="img" aria-label="apple">🍎</span></p>
+        <p>Scanner un code barre afin de savoir comment le recycler <span role="img" aria-label="trash">🗑️</span></p>
       </div>
       <div className="video__container">
         {videoError ?

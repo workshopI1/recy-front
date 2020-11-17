@@ -9,12 +9,19 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from "@material-ui/core/Button";
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import IconButton from "@material-ui/core/IconButton";
+import {Link, useHistory} from 'react-router-dom';
+
+
 
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
         maxWidth: 500,
     },
+    link :{
+        textDecoration : 'none',
+        color:'unset'
+    }
 });
 
 const HomeTabs = () => {
@@ -24,7 +31,10 @@ const HomeTabs = () => {
 
     const [value, setValue] = React.useState(0);
 
+    const history = useHistory();
+
     const handleChange = (event, newValue) => {
+        history.push(event);
         setValue(newValue);
     };
     return (
@@ -37,8 +47,8 @@ const HomeTabs = () => {
                 textColor="primary"
                 aria-label="icon tabs example"
             >
-                <Tab icon={<HomeIcon />} aria-label="phone" />
-                <Tab icon={<CropFreeIcon />} aria-label="favorite" />
+                <Tab icon={<HomeIcon />} aria-label="phone" component={Link} to={'/home'}/>
+                <Tab icon={<CropFreeIcon />} aria-label="favorite" component={Link} to={'/scan'}/>
                 <Tab icon={<ListAltIcon />} aria-label="person" />
             </Tabs>
         </Paper>
