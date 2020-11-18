@@ -26,10 +26,10 @@ const useStyles = makeStyles({
 const ContentList = () => {
 
     const classes = useStyles();
-    const itemList = [{name:'Scanner',icon:<CropFreeIcon/>},{name:'Mes déchets',icon: <DeleteSweepIcon/>}];
+    const itemList = [{name:'Scanner',icon:<CropFreeIcon/>,nav:'/scan'},{name:'Mes déchets',icon: <DeleteSweepIcon/>,nav:'/list'}];
     return(
         <>
-            <Typography variant='h4' className={classes.typo}>Acceuil</Typography>
+            <Typography variant='h4' className={classes.typo}>Accueil</Typography>
             <div className={classes.list}>
                 {itemList.map(i => <Item item={i}/>)}
             </div>
