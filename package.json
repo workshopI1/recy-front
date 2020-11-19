@@ -2,7 +2,6 @@
   "name": "recy-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://recy-front-dev.herokuapp.com/home",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/styles": "latest",
