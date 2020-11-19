@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Typography from "@material-ui/core/Typography";
 import HomeAppBar from "../Home/HomeAppBar";
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -10,28 +10,11 @@ import HomeIcon from '@material-ui/icons/Home';
 import Button from "@material-ui/core/Button";
 import {secondary} from "../../shared/colors";
 import {useHistory} from 'react-router-dom'
-
+import Result from "./Result";
+import Error from "./Error";
+import axios from 'axios'
 
 const useStyles = makeStyles({
-    card : {
-      margin:'10px',
-        padding:'10px'
-    },
-    paper:{
-        textAlign:'left',
-        margin:'0 20px 0 20px',
-        display:'flex',
-        alignItems:'center'
-    },
-    yellow : {
-        color:'#d6be36',
-    },
-    grey : {
-        color:'#4f4f4f'
-    },
-    green:{
-      color:'#49ad49'
-    },
     buttonDiv:{
         display:'flex',
         justifyContent:'space-around'
@@ -45,12 +28,28 @@ const useStyles = makeStyles({
 const Recycling = (props) => {
 
     const {code} = props.location.state;
-    code && fetch(`http://localhost:5000/recycling/get/${code}`).then(res => console.log(res));
 
-    const result = {
-        name:'Bouteille de jus Innocent',
-        recycl:'Bouteille'
-    }
+    const [result,setResult] = useState('')
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:5000/barcode/${code}`)
+            .then(res => {
+                if(res.data !== 'Erreur'){
+                    setResult(res.data)
+                }
+            });
+    },[code])
+
+    console.log(result)
+    // axios.get(`http://127.0.0.1:5000/barcode/${code}`)
+    //     .then(res => setResult(res.data));
+
+    // code && fetch(`http://127.0.0.1:5000/barcode/${code}`).then(res => console.log(res));
+
+    // const result = {
+    //     name:'Bouteille de jus Innocent',
+    //     recycl:'Bouteille'
+    // }
+    // const result = ''
 
     const history = useHistory();
     const handleClick = (route) => {
@@ -60,23 +59,7 @@ const Recycling = (props) => {
     return (
         <>
             <HomeAppBar/>
-            <Card className={classes.card}>
-                <Typography variant='h4'>{result.name} :</Typography>
-                <Divider/>
-                <div className={classes.paper}>
-                    <DeleteIcon className={classes.yellow} style={{fontSize:80}}/>
-                    Poubelle jaune : {result.recycl}
-                </div>
-                <div className={classes.paper}>
-                    <DeleteIcon className={classes.grey} style={{fontSize:80}}/>
-                    A jeter : {result.recycl}
-                </div>
-                <div className={classes.paper}>
-                    <DeleteIcon className={classes.green} style={{fontSize:80}}/>
-                    Container à verre : {result.recycl}
-                </div>
-            </Card>
-            <Typography>Code trouvé : {code}</Typography>
+            {result ? <Result result={result} code={code}/> : <Error code={code}/>}
             <div className={classes.buttonDiv}>
                 <Button className={classes.button} onClick={() => handleClick('/scan')}>
                     Scanner un autre produit <ReplayIcon/>
