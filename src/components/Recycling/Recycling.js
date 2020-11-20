@@ -31,7 +31,7 @@ const Recycling = (props) => {
 
     const [result,setResult] = useState('')
     useEffect(() => {
-        axios.get(`http://127.0.0.1:5000/barcode/${code}`)
+        axios.get(`https://recy-back-prod.herokuapp.com//barcode/${code}`)
             .then(res => {
                 if(res.data !== 'Erreur'){
                     setResult(res.data)

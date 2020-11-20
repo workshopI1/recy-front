@@ -45,7 +45,7 @@ const PageScanIA = (props) => {
     const code = 'aucun'
     useEffect(() => {
         const test = base64.slice(22)
-        axios.post(`http://localhost:5000/detect`,{data:test})
+        axios.post(`https://recy-back-prod.herokuapp.com//detect`,{data:test})
             .then(res=>{
                 if(res.data !== 'Erreur'){
                     setResult(res.data)

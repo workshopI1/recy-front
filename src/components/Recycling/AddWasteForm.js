@@ -37,7 +37,7 @@ const AddWasteForm = (props) => {
     const [materials,setMaterials] = useState()
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/materials`)
+        axios.get(`https://recy-back-prod.herokuapp.com//materials`)
             .then(res => {
                 const item = res.data.map((m) => <MenuItem value={m[0]}>{m[1]}</MenuItem>)
                 setMaterials(item)

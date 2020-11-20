@@ -23,7 +23,7 @@ const AddWaste = (props) => {
     }
 
     const submit = (values) => {
-        axios.post(`http://localhost:5000/add/Waste/`,{name:values.name,id_material:+values.material,barcode:props.code})
+        axios.post(`https://recy-back-prod.herokuapp.com//add/Waste/`,{name:values.name,id_material:+values.material,barcode:props.code})
             .then(res=> console.log(res))
     }
 
