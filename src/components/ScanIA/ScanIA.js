@@ -6,6 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import PhotoCameraRoundedIcon from "@material-ui/icons/PhotoCameraRounded";
 import HomeAppBar from "../Home/HomeAppBar";
 import {useHistory} from 'react-router-dom';
+import Result from "../Recycling/Result";
+import Error from "../Recycling/Error";
+import Button from "@material-ui/core/Button";
+import ReplayIcon from "@material-ui/icons/Replay";
+import HomeIcon from "@material-ui/icons/Home";
+import {secondary} from "../../shared/colors";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
     input: {
         display: "none"
-    }
+    },
 }));
 const ScanIA = () => {
     const classes = useStyles();
@@ -41,7 +47,7 @@ const ScanIA = () => {
                     setSource(newUrl);
                     history.push({
                         pathname:'/scanIA',
-                        state:{source : newUrl}
+                        state:{source : newUrl,base64:imgBase64}
                     })
                 })
             }

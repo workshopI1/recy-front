@@ -22,13 +22,13 @@ const Error = (props) => {
 
     const [open,setOpen] = useState(false);
     const classes = useStyles();
-
+console.log(props.code)
     return(
         <>
             <Card className={classes.card}>
-                <Typography>Nous n'avons pas réussi à identifier le matériaux</Typography>
+                <Typography>Nous n'avons pas réussi à identifier le matériau</Typography>
                 <Typography>Réesayer en prenant la photo de plus près ou avec un fond blanc</Typography>
-                <Button variant='contained' onClick={() => setOpen(true)} className={classes.button}>Ajouter le déchet</Button>
+                {props.code !== 'Materiau non reconnu' ? <Button variant='contained' onClick={() => setOpen(true)} className={classes.button}>Ajouter le déchet</Button> : ''}
             </Card>
 
             <AddWaste

@@ -37,23 +37,24 @@ const Result = (props) => {
     const {result}=props;
     const {code} = props;
     const classes = useStyles();
+    console.log(result)
 
     return (
         <>
             <Card className={classes.card}>
-                <Typography variant='h4'>{result[1]} :</Typography>
+                <Typography variant='h4'>{result.name ? result.name : result.material} :</Typography>
                 <Divider/>
                 <div className={classes.paper}>
                     <DeleteIcon className={classes.yellow} style={{fontSize:80}}/>
-                    Poubelle jaune : {result.recycl}
+                    Poubelle jaune : {result.trash === 'jaune' ? result.material : 'Rien'}
                 </div>
                 <div className={classes.paper}>
                     <DeleteIcon className={classes.grey} style={{fontSize:80}}/>
-                    A jeter : {result.recycl}
+                    A jeter : {result.trash === 'noir' ? result.material : 'Rien'}
                 </div>
                 <div className={classes.paper}>
                     <DeleteIcon className={classes.green} style={{fontSize:80}}/>
-                    Container à verre : {result.recycl}
+                    Container à verre : {result.trash === 'vert' ? result.material : 'Rien'}
                 </div>
             </Card>
             <Typography>Code trouvé : {code}</Typography>
